@@ -10,8 +10,9 @@ namespace MyStore.Store
     /// </summary>
     public struct Name : IComparer<Name>
     {
+
         /// <summary>
-        /// The first name of a customer.
+        /// Public propertis on the Name struct
         /// </summary>
         public string First { get; }
         /// <summary>
@@ -49,11 +50,11 @@ namespace MyStore.Store
         }
 
         /// <summary>
-        /// Compare one name to another alphabetically. Used for sorting
+        /// Method to compare two names: first, middle, last
         /// </summary>
-        /// <param name="x">This name</param>
-        /// <param name="y">The other name</param>
-        /// <returns>A value of 1, or -1 or 0 depending on which name comes first alphabetically.</returns>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public int Compare(Name x, Name y)
         {
             if(x.First == y.First)
@@ -96,7 +97,7 @@ namespace MyStore.Store
         }
 
         /// <summary>
-        /// Get a string representation of the name
+        /// Create a string that shows some of the current state of Name
         /// </summary>
         /// <returns>The string version of the name</returns>
         public override string ToString()
@@ -105,7 +106,7 @@ namespace MyStore.Store
         }
 
         /// <summary>
-        /// Compare equality to another object.
+        /// Method to check if name is equal to another name
         /// </summary>
         /// <param name="obj">The other object</param>
         /// <returns>True or false</returns>

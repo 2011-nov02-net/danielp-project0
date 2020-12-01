@@ -5,21 +5,30 @@ using System.Text;
 
 namespace MyStore.Store
 {
-    public struct Name : IComparer<Name>, ISerializable
+    /// <summary>
+    /// A class to hold a customers name.
+    /// </summary>
+    public struct Name : IComparer<Name>
     {
 
         /// <summary>
         /// Public propertis on the Name struct
         /// </summary>
         public string First { get; }
+        /// <summary>
+        /// Middile Initial
+        /// </summary>
         public char? MiddleInitial { get; }
+        /// <summary>
+        /// Last name of the customer
+        /// </summary>
         public string Last { get; }
 
         /// <summary>
-        /// Constructor with two parameters to create Name struct
+        /// Constructor for a name of someone w/o a middle name
         /// </summary>
-        /// <param name="first"></param>
-        /// <param name="last"></param>
+        /// <param name="first">First Name of the customer</param>
+        /// <param name="last">Last name of the customer</param>
         public Name(string first, string last)
         {
             First = first;
@@ -28,11 +37,11 @@ namespace MyStore.Store
         }
 
         /// <summary>
-        /// Constructor with three parameters to create Name struct
+        /// Constructor for someone with a middle initial
         /// </summary>
-        /// <param name="first"></param>
-        /// <param name="last"></param>
-        /// <param name="middle"></param>
+        /// <param name="first">The first name</param>
+        /// <param name="last">The last name</param>
+        /// <param name="middle">The middle initial</param>
         public Name(string first, string last, char? middle = null)
         {
             First = first;
@@ -88,24 +97,9 @@ namespace MyStore.Store
         }
 
         /// <summary>
-        /// Method to get the data of a serialized object
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="context"></param>
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("First", First);
-            if(MiddleInitial != null)
-            {
-                info.AddValue("Middle", MiddleInitial);
-            }
-            info.AddValue("Last", Last);
-        }
-
-        /// <summary>
         /// Create a string that shows some of the current state of Name
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The string version of the name</returns>
         public override string ToString()
         {
             return $"{First,20} {MiddleInitial?.ToString() ?? " "} {Last, 20}";
@@ -114,8 +108,8 @@ namespace MyStore.Store
         /// <summary>
         /// Method to check if name is equal to another name
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The other object</param>
+        /// <returns>True or false</returns>
         public override bool Equals(object obj)
         {
             if(obj is Name)

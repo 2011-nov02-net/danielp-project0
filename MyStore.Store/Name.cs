@@ -7,10 +7,19 @@ namespace MyStore.Store
 {
     public struct Name : IComparer<Name>, ISerializable
     {
+
+        /// <summary>
+        /// Public propertis on the Name struct
+        /// </summary>
         public string First { get; }
         public char? MiddleInitial { get; }
         public string Last { get; }
 
+        /// <summary>
+        /// Constructor with two parameters to create Name struct
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="last"></param>
         public Name(string first, string last)
         {
             First = first;
@@ -18,6 +27,12 @@ namespace MyStore.Store
             MiddleInitial = null;
         }
 
+        /// <summary>
+        /// Constructor with three parameters to create Name struct
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="last"></param>
+        /// <param name="middle"></param>
         public Name(string first, string last, char? middle = null)
         {
             First = first;
@@ -25,7 +40,12 @@ namespace MyStore.Store
             MiddleInitial = middle;
         }
 
-
+        /// <summary>
+        /// Method to compare two names: first, middle, last
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public int Compare(Name x, Name y)
         {
             if(x.First == y.First)
@@ -67,6 +87,11 @@ namespace MyStore.Store
             }
         }
 
+        /// <summary>
+        /// Method to get the data of a serialized object
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("First", First);
@@ -77,11 +102,20 @@ namespace MyStore.Store
             info.AddValue("Last", Last);
         }
 
+        /// <summary>
+        /// Create a string that shows some of the current state of Name
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"{First,20} {MiddleInitial?.ToString() ?? " "} {Last, 20}";
         }
 
+        /// <summary>
+        /// Method to check if name is equal to another name
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if(obj is Name)
